@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackCooldown = 0.2f; // time between shots
     [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private GameObject[] fireballs; // pool of projectiles
 
     private Animator anim;
     private PlayerMovement playerMovement;
-    private float cooldownTimer = Mathf.Infinity; //so that player can attack from start
-
+    private float cooldownTimer = Mathf.Infinity; // allow shooting immediately
 
     private void Awake()
     {
@@ -19,10 +18,13 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown && playerMovement.canAttack()) //cooldowntimer ensure we a small break before next shot 
-            Attack();
-
         cooldownTimer += Time.deltaTime;
+
+        // Use GetMouseButton for rapid fire while holding the button
+        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        {
+            Attack();
+        }
     }
 
     private void Attack()
@@ -30,8 +32,22 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("attack");
         cooldownTimer = 0;
 
-        fireballs[0].transform.position = firePoint.position;
-        fireballs[0].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        int fireballIndex = FindFireball();
+        GameObject fireball = fireballs[fireballIndex];
+
+        fireball.transform.position = firePoint.position;
+        fireball.GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
+    private int FindFireball()
+    {
+        for (int i = 0; i < fireballs.Length; i++)
+        {
+            if (!fireballs[i].activeInHierarchy) // find unused projectile
+                return i;
+        }
+
+        // fallback: overwrite the first one
+        return 0;
+    }
 }
