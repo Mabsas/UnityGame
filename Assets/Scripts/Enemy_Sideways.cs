@@ -1,19 +1,19 @@
-//using UnityEngine;
+using UnityEngine;
 
-//public class Enemy_Sideways : MonoBehaviour
-//{
+public class Enemy_Sideways : MonoBehaviour
+{
 
-//    [SerializeField] private float damage;
+    [SerializeField] private float damage;
 
 
-//    private void OnTriggerEnter2D(Collider2D collision)
-//    {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
 
-//        if(collision.tag == "Player")
-//        {
-//            collision.GetComponent<Health>().TakeDamage(damage);
-//        }
-      
-//    }
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<Health>().TakeDamage(damage);
+        }
 
-//}
+    }
+
+}
