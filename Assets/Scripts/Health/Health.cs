@@ -16,13 +16,15 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
+
+        //decreasing health on collision
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if(currentHealth > 0)
         {
             //player alive
             anim.SetTrigger("hurt");
-            //iframes
+            
         }
 
         else
@@ -36,6 +38,12 @@ public class Health : MonoBehaviour
             }
   
         }
+    }
+
+    //For increasing health
+    public void AddHealth(float _value)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
 
