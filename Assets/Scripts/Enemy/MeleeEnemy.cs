@@ -11,6 +11,16 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
+    private Animator anim;
+
+    private Health playerHealth;
+
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
 
     private void Update()
     {
@@ -23,6 +33,8 @@ public class MeleeEnemy : MonoBehaviour
             if(cooldownTimer >= attackCooldown)
             {
                 //Attack
+                cooldownTimer = 0;
+                anim.SetTrigger("meleeAttack");
             }
         }
     }
@@ -36,6 +48,11 @@ public class MeleeEnemy : MonoBehaviour
             0,
             playerLayer);
 
+        if(hit.collider != null) {
+
+            playerHealth = hit.transform.GetComponent<Health>();
+        
+        }
         return hit.collider != null;
     }
 
@@ -45,6 +62,15 @@ public class MeleeEnemy : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance, new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
+    }
+
+    private void DamagePlayer()
+    {
+        if (PlayerInSight())
+        {
+            //Damage player
+            playerHealth.TakeDamage(damage);
+        }
     }
 }
 
