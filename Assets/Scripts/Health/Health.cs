@@ -15,6 +15,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
     private SpriteRenderer spriteRend;
 
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
+
 
 
     private void Awake()
@@ -44,16 +47,9 @@ public class Health : MonoBehaviour
                 //player =dead
                 anim.SetTrigger("die");
 
-                //Player
-                if(GetComponent<PlayerMovement>() != null)
-                    GetComponent<PlayerMovement>().enabled = false;
-
-                //Enemy
-                if(GetComponentInParent<EnemyPatrol>() != null)
-                    GetComponentInParent<EnemyPatrol>().enabled = false;
-
-                if (GetComponent<MeleeEnemy>() != null)
-                    GetComponent<MeleeEnemy>().enabled = false;
+                //Deactivates all attached components
+              foreach(Behaviour component in components)
+                    component.enabled = false;
 
                 dead = true;
             }
@@ -82,6 +78,12 @@ public class Health : MonoBehaviour
         }
 
         Physics2D.IgnoreLayerCollision(8, 9, false);  // activates collision again
+    }
+
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
+
     }
 
 
