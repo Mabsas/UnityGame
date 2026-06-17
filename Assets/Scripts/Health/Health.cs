@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
+    private bool invulnerable;
 
 
 
@@ -29,7 +30,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
-
+        if (invulnerable) return;
         //decreasing health on collision
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
@@ -66,6 +67,7 @@ public class Health : MonoBehaviour
     // On collision player gets a temporary invisibility
     private IEnumerator Invulnerability()
     {
+        invulnerable = true;
         Physics2D.IgnoreLayerCollision(8, 9, true);  // after first hit ignore collision btwn player and trap  to show the invisibilty effect so player doesnt lose helath during invisibility
 
         for(int i = 0; i < numberOfFlashes; i++)
@@ -78,6 +80,7 @@ public class Health : MonoBehaviour
         }
 
         Physics2D.IgnoreLayerCollision(8, 9, false);  // activates collision again
+        invulnerable = false;
     }
 
     private void Deactivate()
