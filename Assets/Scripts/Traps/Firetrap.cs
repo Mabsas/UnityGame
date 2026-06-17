@@ -12,11 +12,13 @@ public class Firetrap : MonoBehaviour
     [SerializeField] private float activationDelay;
     [SerializeField] private float activeTime;
     private Animator anim;
-    private SpriteRenderer spriteRend;
+    private SpriteRenderer spriteRend; //changes the trap's color.
 
     private bool triggered; // when trap gets triggered
     private bool active;  // when trap is active and can hurt the player 
 
+
+    //Stores a reference to the player's Health component while the player is inside the trap.
     private Health playerHealth;
 
     private void Update()
@@ -34,6 +36,8 @@ public class Firetrap : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
     }
 
+
+    //Runs when another collider enters the trap's trigger area.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
@@ -42,7 +46,7 @@ public class Firetrap : MonoBehaviour
 
             if (!triggered)
             {
-                StartCoroutine(ActivateFiretrap());
+                StartCoroutine(ActivateFiretrap());    //coroutine a special method that allows you to pause execution and resume it later without freezing the game
             }
             if(active) {
 

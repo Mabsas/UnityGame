@@ -64,6 +64,9 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 
+
+    //iFrames are the short period of time during which that invulnerability is active
+    //Invulnerability is the state where the player cannot take damage
     // On collision player gets a temporary invisibility
     private IEnumerator Invulnerability()
     {
