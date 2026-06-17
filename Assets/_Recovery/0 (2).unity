@@ -6849,6 +6849,8 @@ MonoBehaviour:
   rightEdge: {fileID: 494525840}
   enemy: {fileID: 1620481295}
   speed: 2
+  idleDuration: 1
+  anim: {fileID: 1620481300}
 --- !u!1 &1479928628
 GameObject:
   m_ObjectHideFlags: 0
@@ -7932,6 +7934,11 @@ SpriteRenderer:
 --- !u!4 &1620481295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7956151866721836821, guid: 48b16b1011f681b44ad111e211b06676, type: 3}
+  m_PrefabInstance: {fileID: 2625358509991995391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1620481300 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5419303473043368207, guid: 48b16b1011f681b44ad111e211b06676, type: 3}
   m_PrefabInstance: {fileID: 2625358509991995391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1636177279
@@ -10941,9 +10948,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw
       objectReference: {fileID: 0}
+    - target: {fileID: 136160789084516291, guid: 59ded027c8ce98b4ca1480ec4380d408, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 781595677251659353, guid: 59ded027c8ce98b4ca1480ec4380d408, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.61
+      value: 2.58
       objectReference: {fileID: 0}
     - target: {fileID: 781595677251659353, guid: 59ded027c8ce98b4ca1480ec4380d408, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11183,11 +11194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8191412461735729833, guid: c4de12d333ccaba4faf4b7ac9d4acd4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.86
+      value: 8.98
       objectReference: {fileID: 0}
     - target: {fileID: 8191412461735729833, guid: c4de12d333ccaba4faf4b7ac9d4acd4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.03
       objectReference: {fileID: 0}
     - target: {fileID: 8191412461735729833, guid: c4de12d333ccaba4faf4b7ac9d4acd4a, type: 3}
       propertyPath: m_LocalPosition.z
