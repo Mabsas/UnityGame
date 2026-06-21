@@ -184,12 +184,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 10
   jumpPower: 20
+  coyoteTime: 0
+  extraJumps: 2
+  wallJumpX: 0
+  wallJumpY: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
+  jumpSound: {fileID: 0}
 --- !u!95 &1424780174542471708
 Animator:
   serializedVersion: 7
@@ -257,6 +262,7 @@ MonoBehaviour:
   - {fileID: 3340432142577184791}
   - {fileID: 1096478018322776858}
   deathSound: {fileID: 8300000, guid: 77ad08d0c807f1a42bad6a1dbc4c5792, type: 3}
+  HurtSound: {fileID: 0}
 --- !u!1 &9178037971066383260
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,12 +50,15 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
-                //player =dead
-                anim.SetTrigger("die");
+
 
                 //Deactivates all attached components
               foreach(Behaviour component in components)
                     component.enabled = false;
+
+                //player =dead
+                anim.SetBool("grounded", true);
+                anim.SetTrigger("die");
 
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound); //death sound plays
