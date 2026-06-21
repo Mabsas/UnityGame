@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
 
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpsound;
+
     
     
 
@@ -59,7 +62,18 @@ public class PlayerMovement : MonoBehaviour
                 body.gravityScale = 5;
             }
             if (Input.GetKey(KeyCode.Space))
+            {
                 Jump();
+
+
+                //play jumpsound only once while jumping instead of playing multiple times on every click
+                if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                {
+                    SoundManager.instance.PlaySound(jumpsound);
+                }
+
+            }
+               
 
         }
         else

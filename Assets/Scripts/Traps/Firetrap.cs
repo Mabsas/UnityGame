@@ -15,7 +15,11 @@ public class Firetrap : MonoBehaviour
     private SpriteRenderer spriteRend; //changes the trap's color.
 
     private bool triggered; // when trap gets triggered
-    private bool active;  // when trap is active and can hurt the player 
+    private bool active;  // when trap is active and can hurt the player
+
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip FireTrapSound;
 
 
     //Stores a reference to the player's Health component while the player is inside the trap.
@@ -65,6 +69,8 @@ public class Firetrap : MonoBehaviour
 
     private IEnumerator ActivateFiretrap()
     {
+
+        SoundManager.instance.PlaySound(FireTrapSound); //PLay fire sound
         //turn the sprite red to notify the player and trigger the trap
         triggered = true;
         spriteRend.color = Color.red;  //turn the sprite red to notify the player
